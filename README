@@ -1,0 +1,12 @@
+You can find Instamator on http://instamator.ep.io
+
+If you want to experiment with Instamator's code instead, you're in the right place. To begin:
+
+- Go to http://instagram.com/developer and register your app. You'll get a client_id and client_secret.
+- Replace those values in app.py(line# 22)
+- Setup Redis(http://redis.io)
+- You're ready to go now- just run `python app.py` from your command line and you'll find your app running on http://localhost:5000/
+
+A few things about Instamator: 
+
+Instamator is powered by Flask(http://flask.poccoo.org) and was built by Samrat Man SIngh(http://samrat.github.com).
