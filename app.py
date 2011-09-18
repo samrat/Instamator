@@ -7,22 +7,15 @@ import hashlib
 import redis
 
 app = Flask(__name__)
-app.secret_key = 'secretkey'
-#redis_server = redis.Redis("localhost") #redis configuration for localhost
+app.secret_key = 'secretkey' 
 
-#epio Redis configuration
-from bundle_config import config
-redis_server = redis.Redis(
-    host = config['redis']['host'],
-    port = int(config['redis']['port']),
-    password = config['redis']['password'],
-)
-
+redis_server = redis.Redis("localhost") #redis configuration for localhost
 
 CONFIG = {
-'redirect_uri' : "http://localhost:5000/authenticate",
+'redirect_uri' : "http://instamator.ep.io/authenticate",
 'client_id' : 'client_id',
-'client_secret' : 'client_secret' }
+'client_secret' : 'client_secret'
+}
 
 unauthenticated_api = InstagramAPI(**CONFIG)
 
@@ -78,20 +71,13 @@ def makeText(hash_id):
     for i in liked[0]:
         textcontent.append(i.images['standard_resolution'].url)
 
-    filename = '../data/%s.txt' % hashlib.sha1(str(user_id)).hexdigest()  
-    with open(filename, 'w') as f:
-        f.write("\n".join(textcontent))
-    with open(filename, 'r') as f:
-        response = make_response(f.read())
+    text_response = "\n".join(textcontent)
+    response = make_response(text_response)
     response.headers['Content-Type'] = 'text/plain'
     return response
 
 @app.route('/<hash_id>/json')
 def makeJson(hash_id):
-    '''Makes JSON file about Instagram likes 
-    hash_id: unique id for user 
-    '''
-
     if 'api' in session:
         api = session['api']
     else: 
@@ -116,13 +102,7 @@ def makeJson(hash_id):
      
         dumpcontent.append(tmpdict)
     
-    dumpfile = '../data/%s.json' % hash_id 
-    with open(dumpfile, 'w') as f:
-        json.dump(dumpcontent, f, indent = 4*'')
-
-    dumpread = open(dumpfile, 'r')
-    with open(dumpfile, 'r') as f:
-        opendump = json.load(f)
+    opendump = json.dumps(dumpcontent)
     response = make_response(str(opendump))
     response.headers['Content-Type'] = 'application/json'
     
@@ -130,10 +110,6 @@ def makeJson(hash_id):
 
 @app.route('/<hash_id>/rss')
 def makeRss(hash_id):
-    '''Makes RSS file about Instagram likes 
-    hash_id: unique id for user 
-    '''
-
     if 'api' in session:
         api = session['api']
     else: 
@@ -163,12 +139,8 @@ def makeRss(hash_id):
     items=items,
     )
 
-    filename = '../data/%s.rss' % hash_id 
-    with open(filename, 'w') as f:
-        rss.write_xml(f)
-    
-    with open(filename, 'r') as f:
-        response = make_response(f.read())
+    rss_response = rss.to_xml()
+    response = make_response(rss_response)
     response.headers['Content-Type'] = 'application/rss+xml'
     return response
 

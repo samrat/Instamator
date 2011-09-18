@@ -1,11 +1,10 @@
 <html>
 <head><title>Instamator- Grab your Instagram favorites</title>
-
+<link rel = "stylesheet" href = "{{ url_for('static', filename='css/1140.css') }}" media="screen">
 <link href='http://fonts.googleapis.com/css?family=Yellowtail' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Buda:300' rel='stylesheet' type='text/css'>
 
 <script type="text/javascript">
-
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-18986645-4']);
   _gaq.push(['_trackPageview']);
@@ -15,19 +14,22 @@
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
-
+"
 </script>
-
-
-<!-- start Mixpanel --><script type="text/javascript">var mpq=[];mpq.push(["init","7619ece6e0624c6abf659003d2a4bd01"]);(function(){var b,a,e,d,c;b=document.createElement("script");b.type="text/javascript";b.async=true;b.src=(document.location.protocol==="https:"?"https:":"http:")+"//api.mixpanel.com/site_media/js/api/mixpanel.js";a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(b,a);e=function(f){return function(){mpq.push([f].concat(Array.prototype.slice.call(arguments,0)))}};d=["init","track","track_links","track_forms","register","register_once","identify","name_tag","set_config"];for(c=0;c<d.length;c++){mpq[d[c]]=e(d[c])}})();
-</script><!-- end Mixpanel -->
 </head>
 
 <body>
-<h1 style = "font-family: 'Yellowtail', cursive; font-size:100px; padding-left:400px;">Instamator</h1>
 
+<div class ="container">
+<div class = "row" style="height:100px;">
+<div class = "twelvecol heading" style="text-align:center;"><h1 style = "font-family: 'Yellowtail', cursive; font-size:80px;">Instamator</h1></div>
+</div>
 
-<div style="width:420px; padding-left:400px; font-family: 'Buda', sans-serif; font-size:24px;">
+<div class = "row">
+<div class = "fourcol">&nbsp;</div>
+<div class = "fourcol" style="padding-top:25px;">
+
+<div style="font-family: 'Buda', sans-serif; font-size:24px;">
 Instamator takes all your Instagram "likes" and creates usable feeds so that you can use them as you wish. Instamator was inspired by <a href='http://flickmator.heroku.com/'>Flickmator</a>.
 <br/><br/>
 
@@ -47,7 +49,9 @@ To start using Instamator <a href="{{ login }}">login with your Instagram accoun
 Built by <a href="http://twitter.com/samratmansingh">Samrat Man Singh</a>
 
 </div>
-
-
+<div class ="onecol">&nbsp;</div>
+</div>
+</div>
+</div>
 </body>
 </html>
